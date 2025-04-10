@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: cad-django
+    runtime: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn cad.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: cad.settings
+      - key: SECRET_KEY
+        value: your-production-secret-key
+      - key: DEBUG
+        value: False

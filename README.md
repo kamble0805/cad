@@ -51,6 +51,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 ---
+```bash
 Project Structure
 cad/
 ├── accounts/               # Civilian authentication & profile module

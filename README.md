@@ -49,6 +49,7 @@ python manage.py migrate
 
 # 5. Run the development server
 python manage.py runserver
+```
 ---
 Project Structure
 text

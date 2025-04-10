@@ -52,9 +52,6 @@ python manage.py runserver
 ```
 ---
 Project Structure
-text
-Copy
-Edit
 cad/
 ├── accounts/               # Civilian authentication & profile module
 │   ├── models.py

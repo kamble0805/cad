@@ -49,3 +49,18 @@ python manage.py migrate
 
 # 5. Run the development server
 python manage.py runserver
+---
+Project Structure
+text
+Copy
+Edit
+cad/
+├── accounts/               # Civilian authentication & profile module
+│   ├── models.py
+│   ├── views.py
+│   └── templates/
+│       └── index.html      # Landing Page for registration
+├── static/                 # CSS and static assets (to be developed)
+├── cad/                    # Project settings
+├── manage.py
+└── requirements.txt

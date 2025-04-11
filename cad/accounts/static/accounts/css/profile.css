@@ -1,0 +1,110 @@
+/* static/accounts/css/profile.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    padding: 20px;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 8px;
+    height: 95vh;
+}
+
+.parent > div {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Header (Top of All) */
+.div1 {
+    grid-column: 1 / 6; /* span all 5 columns */
+    grid-row: 1 / 2;    /* top row only */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: #007bff;
+    color: rgb(116, 15, 15);
+}
+
+/* Sidebar (Left Navigation) */
+.div2 {
+    grid-column: 1 / 2;
+    grid-row: 2 / 9;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+}
+
+.div2 button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.div2 button:hover {
+    background-color: #0056b3;
+}
+
+/* Profile Image Section */
+.div3 {
+    grid-column: 2 / 4;
+    grid-row: 2 / 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div3 img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+}
+
+/* Profile Info Section */
+.div4 {
+    grid-column: 2 / 4;
+    grid-row: 5 / 9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+}
+
+.div4 p {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Right Panel or Placeholder */
+.div5 {
+    grid-column: 4 / 6;
+    grid-row: 2 / 9;
+    background-color: #fafafa;
+}
+
+/* Text Styling */
+.info-label {
+    font-weight: bold;
+    color: #6e0101;
+}

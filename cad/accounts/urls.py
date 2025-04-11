@@ -9,8 +9,4 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('create-profile/', views.create_profile_view, name='create_profile'),
     path('view-profile/', views.view_profile_view, name='view_profile'),
-    path('register-vehicle/', views.register_vehicle, name='register_vehicle'),  # ✅ correct
-    
-    path('vehicles/', views.vehicle_list, name='vehicle_list'),
-    path('vehicles/<int:vehicle_id>/', views.vehicle_detail, name='vehicle_detail')
 ]

@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from .models import Vehicle
+
 def signup_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -59,6 +61,35 @@ def create_profile_view(request):
 
     return render(request, 'accounts/create_profile.html')
 
+
+def register_vehicle(request):
+    if request.method == 'POST':
+        aadhaar_number = request.POST.get('aadhaar_number')
+        vehicle_plate = request.POST.get('vehicle_plate')
+
+        if Vehicle.objects.filter(vehicle_plate=vehicle_plate).exists():
+            messages.error(request, "Vehicle plate already exists. Please use a unique plate number.")
+            return redirect('register_vehicle')
+
+        try:
+            owner = UserProfile.objects.get(aadhaar_number=aadhaar_number)
+        except UserProfile.DoesNotExist:
+            messages.error(request, "No user profile found with the provided Aadhaar number.")
+            return redirect('register_vehicle')
+
+        Vehicle.objects.create(
+            owner=owner,
+            vehicle_plate=vehicle_plate,
+            model=request.POST.get('model'),
+            color=request.POST.get('color'),
+            image_url=request.POST.get('image_url'),
+        )
+        messages.success(request, "Vehicle registered successfully.")
+        return redirect('view_vehicles')
+
+    return render(request, 'accounts/register_vehicle.html')
+
+
 @login_required(login_url='login')
 def dashboard_view(request):
     return render(request, 'accounts/dashboard.html', {'user': request.user})
@@ -70,7 +101,16 @@ def logout_view(request):
 def view_profile_view(request):
     profile = get_object_or_404(UserProfile, user=request.user)
     return render(request, 'accounts/view_profile.html', {'profile': profile})
-from django.shortcuts import render
+
+def vehicle_list(request):
+    vehicles = Vehicle.objects.all()
+    return render(request, 'accounts/vehicle_list.html', {'vehicles': vehicles})
+
+def vehicle_detail(request, vehicle_id):
+    vehicle = get_object_or_404(Vehicle, id=vehicle_id)
+    return render(request, 'accounts/vehicle_detail.html', {'vehicle': vehicle})
+
+
 
 def index(request):
     return render(request, 'index.html')

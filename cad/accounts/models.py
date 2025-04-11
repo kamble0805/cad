@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class UserProfile(models.Model):
     GENDER_CHOICES = [
         ('M', 'Male'),
@@ -30,3 +31,17 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+      
+
+class Vehicle(models.Model):
+    owner_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    vehicle_plate = models.CharField(max_length=20, unique=True)
+    vehicle_type = models.CharField(max_length=50)
+    vehicle_model = models.CharField(max_length=50)
+    vehicle_color = models.CharField(max_length=30)
+    vehicle_image_url = models.URLField(blank=True, null=True)
+    registration_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.vehicle_plate} - {self.vehicle_model}"

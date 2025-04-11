@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vehicle Profile</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/profile.css' %}">
+</head>
+<body>
+    <div class="parent">
+        <div class="div1">Vehicle Profile</div>
+
+        <div class="div3">
+            <img src="{{ vehicle.vehicle_image_url }}" alt="Vehicle Image" style="max-width: 300px;">
+        </div>
+
+        <div class="div4">
+            <p><span class="info-label">Plate:</span> {{ vehicle.vehicle_plate }}</p>
+            <p><span class="info-label">Model:</span> {{ vehicle.vehicle_model }}</p>
+            <p><span class="info-label">Type:</span> {{ vehicle.vehicle_type }}</p>
+            <p><span class="info-label">Color:</span> {{ vehicle.vehicle_color }}</p>
+            <p><span class="info-label">Owner:</span> {{ vehicle.owner_profile.first_name }} {{ vehicle.owner_profile.last_name }}</p>
+            <p><span class="info-label">Registered On:</span> {{ vehicle.registration_date }}</p>
+        </div>
+
+        <div class="div5"></div>
+    </div>
+</body>
+</html>

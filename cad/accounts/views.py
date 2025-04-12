@@ -71,9 +71,12 @@ def logout_view(request):
 
 @login_required
 def view_profile_view(request):
-    profile = get_object_or_404(UserProfile, user=request.user)
-    return render(request, 'accounts/view_profile.html', {'profile': profile})
-
+    try:
+        profile = UserProfile.objects.get(user=request.user)
+        return render(request, 'accounts/view_profile.html', {'profile': profile})
+    except UserProfile.DoesNotExist:
+        messages.warning(request, "You haven't created a profile yet. Please complete your profile to continue.")
+        return redirect('create_profile')  # Make sure this name exists in urls.py
 
 
 

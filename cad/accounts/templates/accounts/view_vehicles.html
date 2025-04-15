@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Vehicles</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/profile.css' %}">
+    <style>
+        .vehicle-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+        .vehicle-card {
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .vehicle-card:hover {
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+        }
+        .vehicle-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        .vehicle-info {
+            margin-top: 10px;
+        }
+        .vehicle-info p {
+            margin: 4px 0;
+        }
+        .vehicle-btn {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="div1">CAD SYSTEM - MY VEHICLES</div>
+
+        <div class="div2">
+            <a href="{% url 'dashboard' %}" class="btn btn-primary btn-block mb-2">Dashboard</a>
+            <a href="{% url 'create_profile' %}" class="btn btn-success btn-block mb-2">Create Profile</a>
+            <a href="{% url 'register_vehicle' %}" class="btn btn-success btn-block mb-2">Register Vehicle</a>
+            <a href="{% url 'view_profile' %}" class="btn btn-info btn-block mb-2">View Profile</a>
+            <a href="{% url 'view_vehicles' %}" class="btn btn-info btn-block mb-2">View Vehicles</a>
+            <a href="{% url 'logout' %}" class="btn btn-danger btn-block mb-2">Logout</a>
+        </div>
+
+        <div class="div4">
+            <h2>Your Registered Vehicles</h2>
+            {% if vehicles %}
+                <div class="vehicle-container">
+                    {% for vehicle in vehicles %}
+                        <div class="vehicle-card">
+                            {% if vehicle.vehicle_image_url %}
+                                <img src="{{ vehicle.vehicle_image_url }}" alt="Vehicle Image">
+                            {% else %}
+                                <p>No Image Available</p>
+                            {% endif %}
+                            <div class="vehicle-info">
+                                <p><strong>Plate:</strong> {{ vehicle.vehicle_plate }}</p>
+                                <p><strong>Type:</strong> {{ vehicle.vehicle_type }}</p>
+                                <p><strong>Model:</strong> {{ vehicle.vehicle_model }}</p>
+                                <p><strong>Color:</strong> {{ vehicle.vehicle_color }}</p>
+                            </div>
+                            <div class="vehicle-btn">
+                                <a href="{% url 'vehicle_detail' vehicle.id %}" class="btn btn-sm btn-info">View Details</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>You have not registered any vehicles yet.</p>
+            {% endif %}
+        </div>
+
+        <div class="div5">
+            <!-- Reserved for additional data or support links -->
+        </div>
+    </div>
+</body>
+</html>

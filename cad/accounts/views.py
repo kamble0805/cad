@@ -6,6 +6,11 @@ from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from .models import UserProfile
+
+
+
+
 
 def signup_view(request):
     if request.method == 'POST':
@@ -59,6 +64,10 @@ def create_profile_view(request):
         return redirect('dashboard')
 
     return render(request, 'accounts/create_profile.html')
+
+
+
+
 
 
 

@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Vehicle</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/profile.css' %}">
+</head>
+<body>
+    <div class="parent">
+        <div class="div1">CAD SYSTEM - REGISTER VEHICLE</div>
+
+        <div class="div2">
+            <a href="{% url 'dashboard' %}" class="btn btn-primary btn-block mb-2">Dashboard</a>
+            <a href="{% url 'create_profile' %}" class="btn btn-success btn-block mb-2">Create Profile</a>
+            <a href="{% url 'register_vehicle' %}" class="btn btn-success btn-block mb-2">Register Vehicle</a>
+            <a href="{% url 'view_profile' %}" class="btn btn-info btn-block mb-2">View Profile</a>
+            <a href="{% url 'view_vehicles' %}" class="btn btn-info btn-block mb-2">View Vehicles</a>
+            <a href="{% url 'logout' %}" class="btn btn-danger btn-block mb-2">Logout</a>
+        </div>
+
+        <div class="div4">
+            <h2>Register a New Vehicle</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Vehicle Plate</label>
+                    <input type="text" name="vehicle_plate" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Vehicle Type</label>
+                    <input type="text" name="vehicle_type" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Vehicle Model</label>
+                    <input type="text" name="vehicle_model" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Vehicle Color</label>
+                    <input type="text" name="vehicle_color" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Vehicle Image URL (vgy.me)</label>
+                    <input type="url" name="vehicle_image_url" class="form-control">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary btn-block">Register Vehicle</button>
+            </form>
+        </div>
+
+        <div class="div5">
+            <!-- Optional future space: history, images, notes -->
+        </div>
+    </div>
+</body>
+</html>

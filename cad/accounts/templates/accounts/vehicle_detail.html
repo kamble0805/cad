@@ -1,0 +1,15 @@
+{% block content %}
+
+<div class="container mt-5">
+    <h2>Vehicle Details</h2>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">{{ vehicle.vehicle_name }}</h5>
+            <p class="card-text"><strong>Type:</strong> {{ vehicle.vehicle_type }}</p>
+            <p class="card-text"><strong>Registration Number:</strong> {{ vehicle.registration_number }}</p>
+        </div>
+    </div>
+    <a href="{% url 'view_vehicles' %}" class="btn btn-secondary mt-3">Back to Vehicles</a>
+</div>
+
+{% endblock %}

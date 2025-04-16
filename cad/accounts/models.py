@@ -34,3 +34,13 @@ class UserProfile(models.Model):
     
 from django.db import models
 from .models import UserProfile
+
+class Vehicle(models.Model):
+    owner_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    vehicle_name = models.CharField(max_length=100)
+    vehicle_type = models.CharField(max_length=50)
+    registration_number = models.CharField(max_length=50, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.vehicle_name} - {self.registration_number}"

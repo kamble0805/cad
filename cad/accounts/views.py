@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import UserProfile
+from .models import UserProfile, Vehicle
 
 
 
@@ -94,4 +94,52 @@ def index(request):
     return render(request, 'index.html')
 
 
+
+# ✅ Register Vehicle
+@login_required
+def register_vehicle(request):
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        return redirect('create_profile')
+
+    if request.method == 'POST':
+        vehicle_name = request.POST.get('vehicle_name')
+        vehicle_type = request.POST.get('vehicle_type')
+        registration_number = request.POST.get('registration_number')
+
+        Vehicle.objects.create(
+            owner_profile=user_profile,
+            vehicle_name=vehicle_name,
+            vehicle_type=vehicle_type,
+            registration_number=registration_number
+        )
+        messages.success(request, "Vehicle registered successfully.")
+        return redirect('view_vehicles')
+
+    return render(request, 'accounts/register_vehicle.html')
+
+
+# ✅ View All Vehicles
+@login_required
+def view_vehicles(request):
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        return redirect('create_profile')
+
+    vehicles = Vehicle.objects.filter(owner_profile=user_profile)
+
+    if not vehicles.exists():
+        messages.warning(request, "No vehicle registered. Please register one.")
+        return redirect('register_vehicle')
+
+    return render(request, 'accounts/view_vehicles.html', {'vehicles': vehicles})
+
+
+# ✅ View Vehicle Details
+@login_required
+def vehicle_detail(request, vehicle_id):
+    vehicle = get_object_or_404(Vehicle, id=vehicle_id, owner_profile__user=request.user)
+    return render(request, 'accounts/vehicle_detail.html', {'vehicle': vehicle})
 

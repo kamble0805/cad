@@ -9,9 +9,6 @@ from django.contrib.auth.decorators import login_required
 from .models import UserProfile, Vehicle
 
 
-
-
-
 def signup_view(request):
     if request.method == 'POST':
         username = request.POST['username']

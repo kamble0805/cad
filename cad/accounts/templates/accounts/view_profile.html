@@ -8,34 +8,63 @@
 </head>
 <body>
     <div class="parent">
-        <div class="div1">CAD SYSTEM - CIVILIAN PROFILE</div>
-
-        <div class="div2">
-            <button>Dashboard</button>
-            <button>Edit Profile</button>
-            <button>Logout</button>
+        <!-- Header -->
+        <div class="div1">
+            CAD SYSTEM - CIVILIAN PROFILE
         </div>
 
+        <!-- Navigation Buttons -->
+        <div class="div2">
+            <button class="btn btn-primary w-100 mb-2">Dashboard</button>
+            <button class="btn btn-secondary w-100 mb-2">Edit Profile</button>
+            <button class="btn btn-danger w-100">Logout</button>
+        </div>
+
+        <!-- Profile Picture -->
         <div class="div3">
             {% if profile.profile_picture_url %}
-                <img src="{{ profile.profile_picture_url }}" alt="Profile Picture" class="profile-img">
+                <img src="{{ profile.profile_picture_url }}" alt="Profile Picture" style="width: 100%; max-width: 150px; border-radius: 8px;">
             {% else %}
                 <p>No Profile Picture</p>
             {% endif %}
         </div>
 
+        <!-- Personal Info -->
         <div class="div4">
-            <p><span class="info-label">Full Name:</span> {{ profile.first_name }} {{ profile.last_name }}</p>
-            <p><span class="info-label">Aadhaar:</span> {{ profile.aadhaar_number }}</p>
-            <p><span class="info-label">DOB:</span> {{ profile.dob }}</p>
-            <p><span class="info-label">Gender:</span> {{ profile.gender }}</p>
-            <p><span class="info-label">Phone:</span> {{ profile.phone_number }}</p>
-            <p><span class="info-label">Occupation:</span> {{ profile.occupation }}</p>
-            <p><span class="info-label">Address:</span> {{ profile.address }}</p>
+            <h5>Personal Information</h5>
+            <p><strong>Full Name:</strong> {{ profile.first_name }} {{ profile.last_name }}</p>
+            <p><strong>Aadhaar:</strong> {{ profile.aadhaar_number }}</p>
+            <p><strong>DOB:</strong> {{ profile.dob }}</p>
+            <p><strong>Gender:</strong> {{ profile.gender }}</p>
+            <p><strong>Phone:</strong> {{ profile.phone_number }}</p>
+            <p><strong>Occupation:</strong> {{ profile.occupation }}</p>
+            <p><strong>Address:</strong> {{ profile.address }}</p>
         </div>
 
+        <!-- Residency -->
         <div class="div5">
-            <!-- Reserved for future: case history, emergency contacts, or visual data -->
+            <h5>Residency Details</h5>
+            <p>City: {{ profile.city }}</p>
+            <p>State: {{ profile.state }}</p>
+            <p>PIN Code: {{ profile.pin_code }}</p>
+        </div>
+
+        <!-- Vehicles -->
+        <div class="div6">
+            <h5>Vehicles</h5>
+            <p><a href="{% url 'view_vehicles' %}">View Registered Vehicles</a></p>
+        </div>
+
+        <!-- Gallery -->
+        <div class="div7">
+            <h5>Gallery</h5>
+            <p>Upload/View Profile Media</p>
+        </div>
+
+        <!-- Cases -->
+        <div class="div8">
+            <h5>Cases</h5>
+            <p>Associated legal/criminal case info here.</p>
         </div>
     </div>
 </body>

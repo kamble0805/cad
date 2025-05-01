@@ -58,6 +58,7 @@ google-cloud-storage==3.1.0
 google-crc32c==1.7.1
 google-resumable-media==2.7.2
 googleapis-common-protos==1.69.2
+gunicorn==20.1.0  # or the latest version
 graphviz==0.20.3
 greenlet==3.1.1
 grpcio==1.71.0
